@@ -1,5 +1,7 @@
 # Property Mapper
 
+[![Build Status](https://travis-ci.org/fastnorth/property-mapper.svg?branch=master)](https://travis-ci.org/fastnorth/property-mapper)
+
 A common programming task deals with transforming data structures into one
 another, for instance for instance processing data from an API, or a database,
 into objects for internal usage. This library helps with creating mappers that can be:
