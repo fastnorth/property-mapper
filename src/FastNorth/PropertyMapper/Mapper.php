@@ -68,7 +68,8 @@ class Mapper implements MapperInterface
         foreach ($map->getLinks() as $link) {
             if ($link->hasTransformer()) {
                 $value = $link->getTransformer()->transform(
-                    $this->propertyAccess->getValue($from, $link->getFrom())
+                    $this->propertyAccess->getValue($from, $link->getFrom()),
+                    $from
                 );
             } else {
                 $value = $this->propertyAccess->getValue($from, $link->getFrom());
@@ -89,12 +90,13 @@ class Mapper implements MapperInterface
      *
      * @return self
      */
-    private function reverseLinks(&$from, &$to, MapInterface $map)
+    private function reverseLinks(&$from, $to, MapInterface $map)
     {
         foreach ($map->getLinks() as $link) {
             if ($link->hasTransformer()) {
                 $value = $link->getTransformer()->reverse(
-                    $this->propertyAccess->getValue($to, $link->getTo())
+                    $this->propertyAccess->getValue($to, $link->getTo()),
+                    $to
                 );
             } else {
                 $value = $this->propertyAccess->getValue($to, $link->getTo());
