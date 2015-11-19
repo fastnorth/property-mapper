@@ -1,6 +1,7 @@
 # Property Mapper
 
 [![Build Status](https://travis-ci.org/fastnorth/property-mapper.svg?branch=master)](https://travis-ci.org/fastnorth/property-mapper)
+[![Code Climate](https://codeclimate.com/github/fastnorth/property-mapper/badges/gpa.svg)](https://codeclimate.com/github/fastnorth/property-mapper)
 
 A common programming task deals with transforming data structures into one
 another, for instance for instance processing data from an API, or a database,
