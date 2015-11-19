@@ -63,3 +63,31 @@ The map can also be applied in reverse, using `reverse()`:
 // Applies the map in reverse, taking properties from $objectTwo and applying them to $objectOne
 $mapper->reverse($objectOne, $objectTwo, $map);
 ```
+
+## Transforming Values
+
+Part of the mapping operations is taking a value from one side of the
+operation, applying a transforming operation to it, then applying it to the
+other. For instance, date/time might be stored as a string or integer timestamp
+on one end, but a PHP `DateTime` object on the other. FastNorth PropertyMapper
+supports this with the concept of "Transformers".
+
+Transformers are bi-directional, meaning they can process data in both
+directions, allowing the mapper to process maps in `reverse()`.
+
+### Adding Transformers To a Map
+
+Any transformer (implementing
+`FastNorth\PropertyMapper\Transformer\TransformerInterface`) can be passed as a
+third parameter to `map()`:
+
+```php
+<?php
+
+use FastNorth\PropertyMapper\Map;
+use FastNorth\PropertyMapper\Transformer\Datetime\StringToDateTime;
+
+$map = new Map;
+$map->map('aStringDateProperty', 'aDateTimeProperty', new DateTimeTransformer('Y-m-d'));
+```
+
