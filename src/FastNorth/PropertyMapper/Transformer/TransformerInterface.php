@@ -9,7 +9,19 @@ namespace FastNorth\PropertyMapper\Transformer;
  */
 interface TransformerInterface
 {
-    public function forward($value, $context);
+    /**
+     * Transform a value
+     *
+     * @param mixed $value
+     * @param array|object $context the "from" side of the mapping
+     */
+    public function transform($value, $context);
 
+    /**
+     * Reverse-transform a value
+     *
+     * @param mixed $value
+     * @param array|object $context the "to" side of the mapping
+     */
     public function reverse($value, $context);
 }

@@ -3,6 +3,7 @@
 namespace FastNorth\PropertyMapper\Transformer\DateTime;
 
 use FastNorth\PropertyMapper\Transformer\TransformerInterface;
+use DateTime;
 
 /**
  * StringToDateTime
@@ -31,7 +32,7 @@ class StringToDateTime implements TransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function forward($value, $context)
+    public function transform($value, $context)
     {
         return new DateTime($value);
     }
