@@ -1,0 +1,24 @@
+{
+    "name": "fastnorth/property-mapper",
+    "description": "Transforms data structures",
+    "require": {
+        "symfony/property-access": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "FastNorth\\PropertyMapper\\": "src/FastNorth/PropertyMapper",
+            "FastNorth\\PropertyMapper\\Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0",
+        "symfony/var-dumper": "^2.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "naneau",
+            "email": "git@naneau.net"
+        }
+    ]
+}
