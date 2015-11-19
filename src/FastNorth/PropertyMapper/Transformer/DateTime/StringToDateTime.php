@@ -1,7 +1,8 @@
 <?php
 
 namespace FastNorth\PropertyMapper\Transformer\DateTime;
-namespace FastNorth\PropertyMapper\Transformer\TransformerInterface;
+
+use FastNorth\PropertyMapper\Transformer\TransformerInterface;
 
 /**
  * StringToDateTime
