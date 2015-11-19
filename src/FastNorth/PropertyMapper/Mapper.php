@@ -20,7 +20,7 @@ class Mapper implements MapperInterface
     private $propertyAccess;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * When not given a PropertyAccessor, a new one will be instantiated.
      *
@@ -29,43 +29,36 @@ class Mapper implements MapperInterface
     public function __construct(PropertyAccessorInterface $propertyAccess = null)
     {
         if (!($propertyAccess instanceof PropertyAccessorInterface)) {
-            $propertyAccess = new PropertyAccessor;
+            $propertyAccess = new PropertyAccessor();
         }
         $this->propertyAccess = $propertyAccess;
     }
 
     /**
-     * Apply forward transformation.
-     *
-     * @param mixed        $from
-     * @param mixed        $to
-     * @param MapInterface $map
+     * {@inheritdoc}
      */
     public function process($from, &$to, MapInterface $map)
     {
         $this->processLinks($from, $to, $map);
+
+        return $to;
     }
 
     /**
-     * Reverse mapping.
-     *
-     * Note that the parameter order is preserved between process() and
-     * reverse(), it is the mapping that is reversed.
-     *
-     * @param mixed        $from
-     * @param mixed        $to
-     * @param MapInterface $map
+     * {@inheritdoc}
      */
     public function reverse(&$from, $to, MapInterface $map)
     {
         $this->reverseLinks($from, $to, $map);
+
+        return $from;
     }
 
     /**
      * Process the property links of a map.
      *
-     * @param object|array        $from
-     * @param object|array        $to
+     * @param object|array $from
+     * @param object|array $to
      * @param MapInterface $map
      *
      * @return self
@@ -90,8 +83,8 @@ class Mapper implements MapperInterface
     /**
      * Reverse the property links of a map.
      *
-     * @param mixed        $from
-     * @param mixed        $to
+     * @param object|array $from
+     * @param object|array $to
      * @param MapInterface $map
      *
      * @return self
