@@ -53,6 +53,7 @@ class EmbeddedCollections extends Processor
      */
     public function reverse(&$from, $to, MapInterface $map)
     {
+        throw new \LogicException('not implemented');
     }
 }
 
