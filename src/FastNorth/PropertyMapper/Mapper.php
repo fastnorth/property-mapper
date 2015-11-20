@@ -2,6 +2,8 @@
 
 namespace FastNorth\PropertyMapper;
 
+use FastNorth\PropertyMapper\Mapper;
+
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
@@ -39,7 +41,7 @@ class Mapper implements MapperInterface
      */
     public function process($from, &$to, MapInterface $map)
     {
-        $this->processLinks($from, $to, $map);
+        (new Processor\Links($this->propertyAccess))->process($from, $to, $map);
 
         return $to;
     }
@@ -49,62 +51,8 @@ class Mapper implements MapperInterface
      */
     public function reverse(&$from, $to, MapInterface $map)
     {
-        $this->reverseLinks($from, $to, $map);
+        (new Processor\Links($this->propertyAccess))->reverse($from, $to, $map);
 
         return $from;
-    }
-
-    /**
-     * Process the property links of a map.
-     *
-     * @param object|array $from
-     * @param object|array $to
-     * @param MapInterface $map
-     *
-     * @return self
-     */
-    private function processLinks($from, &$to, MapInterface $map)
-    {
-        foreach ($map->getLinks() as $link) {
-            if ($link->hasTransformer()) {
-                $value = $link->getTransformer()->transform(
-                    $this->propertyAccess->getValue($from, $link->getFrom()),
-                    $from
-                );
-            } else {
-                $value = $this->propertyAccess->getValue($from, $link->getFrom());
-            }
-
-            $this->propertyAccess->setValue($to, $link->getTo(), $value);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Reverse the property links of a map.
-     *
-     * @param object|array $from
-     * @param object|array $to
-     * @param MapInterface $map
-     *
-     * @return self
-     */
-    private function reverseLinks(&$from, $to, MapInterface $map)
-    {
-        foreach ($map->getLinks() as $link) {
-            if ($link->hasTransformer()) {
-                $value = $link->getTransformer()->reverse(
-                    $this->propertyAccess->getValue($to, $link->getTo()),
-                    $to
-                );
-            } else {
-                $value = $this->propertyAccess->getValue($to, $link->getTo());
-            }
-
-            $this->propertyAccess->setValue($from, $link->getFrom(), $value);
-        }
-
-        return $this;
     }
 }
