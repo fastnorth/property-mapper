@@ -2,6 +2,7 @@
 
 namespace FastNorth\PropertyMapper\Tests\Unit;
 
+use FastNorth\PropertyMapper\Tests\Stubs;
 use FastNorth\PropertyMapper\Tests\TestCase;
 use FastNorth\PropertyMapper\Map;
 use FastNorth\PropertyMapper\Mapper;
@@ -94,5 +95,20 @@ class MapperTest extends TestCase
         $this->assertEquals('value for c', $from->leftC);
     }
 
+    /** @test */
+    public function itMapsPropertiesUsingGettersAndSetters()
+    {
+        $map = new Map;
+        $map->map('foo', 'mappedFoo');
+
+        $from = new Stubs\From;
+        $from->setFoo('value for foo');
+        $to = new Stubs\To;
+
+        $mapper = new Mapper;
+        $mapper->process($from, $to, $map);
+
+        $this->assertEquals('value for foo', $to->getMappedFoo());
+    }
 }
 
