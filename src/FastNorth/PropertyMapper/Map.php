@@ -4,6 +4,7 @@ namespace FastNorth\PropertyMapper;
 
 use FastNorth\PropertyMapper\Transformer\TransformerInterface;
 use FastNorth\PropertyMapper\Map\Link;
+use FastNorth\PropertyMapper\Map\EmbeddedCollection;
 
 /**
  * Map
@@ -20,11 +21,14 @@ class Map implements MapInterface
     private $links = [];
 
     /**
-     * Map a property
+     * Embedded collections
      *
-     * @param string $from
-     * @param string $to
-     * @param TransformerInterface $transformer
+     * @var MappedCollection[]
+     */
+    private $embeddedCollections = [];
+
+    /**
+     * @inheritDoc
      */
     public function map($from, $to, TransformerInterface $transformer = null)
     {
@@ -39,5 +43,23 @@ class Map implements MapInterface
     public function getLinks()
     {
         return $this->links;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function embedCollection($from, $to, MapInterface $map, callable $generator)
+    {
+        $this->embeddedCollections[] = new EmbeddedCollection($from, $to, $map, $generator);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getEmbeddedCollections()
+    {
+        return $this->embeddedCollections;
     }
 }

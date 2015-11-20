@@ -101,8 +101,7 @@ class MapperTest extends TestCase
         $map = new Map;
         $map->map('foo', 'mappedFoo');
 
-        $from = new Stubs\From;
-        $from->setFoo('value for foo');
+        $from = new Stubs\From('value for foo');
         $to = new Stubs\To;
 
         $mapper = new Mapper;

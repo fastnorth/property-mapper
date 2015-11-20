@@ -3,7 +3,6 @@
 namespace FastNorth\PropertyMapper;
 
 use FastNorth\PropertyMapper\Mapper;
-
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
@@ -42,6 +41,7 @@ class Mapper implements MapperInterface
     public function process($from, &$to, MapInterface $map)
     {
         (new Processor\Links($this->propertyAccess))->process($from, $to, $map);
+        (new Processor\EmbeddedCollections($this->propertyAccess))->process($from, $to, $map);
 
         return $to;
     }

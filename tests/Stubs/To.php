@@ -17,6 +17,13 @@ class To
     private $mappedFoo;
 
     /**
+     * the mapped children
+     *
+     * @var array
+     */
+    private $mappedChildren = '';
+
+    /**
      * Get mapped foo
      *
      * @return string
@@ -35,6 +42,29 @@ class To
     public function setMappedFoo($mappedFoo)
     {
         $this->mappedFoo = $mappedFoo;
+
+        return $this;
+    }
+
+    /**
+     * Get the mapped children
+     *
+     * @return array
+     */
+    public function getMappedChildren()
+    {
+        return $this->mappedChildren;
+    }
+
+    /**
+     * Set the mapped children
+     *
+     * @param  array   $mappedChildren
+     * @return self
+     */
+    public function setMappedChildren($mappedChildren)
+    {
+        $this->mappedChildren = $mappedChildren;
 
         return $this;
     }

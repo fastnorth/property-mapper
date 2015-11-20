@@ -17,6 +17,18 @@ class From
     private $foo;
 
     /**
+     * the children
+     *
+     * @var array
+     */
+    private $children = [];
+
+    public function __construct($foo)
+    {
+        $this->foo = $foo;
+    }
+
+    /**
      * Get foo
      *
      * @return string
@@ -35,6 +47,29 @@ class From
     public function setFoo($foo)
     {
         $this->foo = $foo;
+
+        return $this;
+    }
+
+    /**
+     * Get the children
+     *
+     * @return array
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set the children
+     *
+     * @param  array   $children
+     * @return self
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
 
         return $this;
     }
