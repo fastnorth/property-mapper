@@ -32,16 +32,34 @@ interface MapInterface
     public function getLinks();
 
     /**
-     * Embed a collection of items.
+     * Embed an entity from a subset of the properties.
      *
-     * @param string       $from
-     * @param string       $to   should point to iterable property
-     * @param MapInterface $map  the map to apply to each item
-     * @param callable $generator generator for new items
+     * @param string           $to
+     * @param MapInterface     $map
+     * @param FactoryInterface $factory
      *
      * @return self
      */
-    public function embedCollection($from, $to, MapInterface $map, callable $generator);
+    public function embed($to, MapInterface $map, FactoryInterface $factory);
+
+    /**
+     * Get the embeds
+     *
+     * @return EmbeddedInterface[]
+     */
+    public function getEmbeds();
+
+    /**
+     * Embed a collection of items.
+     *
+     * @param string           $from
+     * @param string           $to      should point to iterable property
+     * @param MapInterface     $map     the map to apply to each item
+     * @param FactoryInterface $factory factory for new items
+     *
+     * @return self
+     */
+    public function embedCollection($from, $to, MapInterface $map, FactoryInterface $factory);
 
     /**
      * Get all embedded collections.
@@ -50,4 +68,3 @@ interface MapInterface
      */
     public function getEmbeddedCollections();
 }
-

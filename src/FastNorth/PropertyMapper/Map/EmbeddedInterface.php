@@ -6,19 +6,28 @@ use FastNorth\PropertyMapper\MapInterface;
 use FastNorth\PropertyMapper\FactoryInterface;
 
 /**
- * EmbeddedCollectionInterface
+ * EmbeddedInterface
  *
- * An embedded collection
+ * Maps embedded entities
  */
-interface EmbeddedCollectionInterface extends LinkedInterface
+interface EmbeddedInterface
 {
     /**
-     * Get the map for the collection
+     * Get the to property
+     *
+     * @return string
+     */
+    public function getTo();
+
+    /**
+     * Get the map
+     *
+     * @return MapInterface
      */
     public function getMap();
 
     /**
-     * Get the factory for new items
+     * Get the object factory
      *
      * @return FactoryInterface
      */

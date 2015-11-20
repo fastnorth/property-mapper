@@ -6,44 +6,57 @@ use FastNorth\PropertyMapper\MapInterface;
 use FastNorth\PropertyMapper\FactoryInterface;
 
 /**
- * EmbeddedCollection
+ * Embedded.
  *
- * An embedded collection
+ * Embedded entity
  */
-class EmbeddedCollection extends AbstractLink implements EmbeddedCollectionInterface
+class Embedded implements EmbeddedInterface
 {
     /**
-     * The map
+     * "To" endpoint.
+     *
+     * @var string
+     */
+    private $to;
+
+    /**
+     * Map.
      *
      * @var MapInterface
      */
     private $map;
 
     /**
-     * The factory
+     * Factory.
      *
      * @var FactoryInterface
      */
     private $factory;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $from
-     * @param string $to
-     * @param MapInterface $map
+     * @param string           $to
+     * @param MapInterface     $map
      * @param FactoryInterface $factory
      */
-    public function __construct($from, $to, MapInterface $map, FactoryInterface $factory)
+    public function __construct($to, MapInterface $map, FactoryInterface $factory)
     {
-        parent::__construct($from, $to);
-
+        $this->to      = $to;
         $this->map     = $map;
         $this->factory = $factory;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
+     */
+    public function getTo()
+    {
+        return $this->to;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getMap()
     {
@@ -51,11 +64,10 @@ class EmbeddedCollection extends AbstractLink implements EmbeddedCollectionInter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getFactory()
     {
         return $this->factory;
     }
 }
-

@@ -4,6 +4,7 @@ namespace FastNorth\PropertyMapper;
 
 use FastNorth\PropertyMapper\Transformer\TransformerInterface;
 use FastNorth\PropertyMapper\Map\Link;
+use FastNorth\PropertyMapper\Map\Embedded;
 use FastNorth\PropertyMapper\Map\EmbeddedCollection;
 
 /**
@@ -19,6 +20,13 @@ class Map implements MapInterface
      * @var Link[]
      */
     private $links = [];
+
+    /**
+     * Embeds
+     *
+     * @var Embedded
+     */
+    private $embeds = [];
 
     /**
      * Embedded collections
@@ -48,9 +56,27 @@ class Map implements MapInterface
     /**
      * @inheritDoc
      */
-    public function embedCollection($from, $to, MapInterface $map, callable $generator)
+    public function embed($to, MapInterface $map, FactoryInterface $factory)
     {
-        $this->embeddedCollections[] = new EmbeddedCollection($from, $to, $map, $generator);
+        $this->embeds[] = new Embedded($to, $map, $factory);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getEmbeds()
+    {
+        return $this->embeds;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function embedCollection($from, $to, MapInterface $map, FactoryInterface $factory)
+    {
+        $this->embeddedCollections[] = new EmbeddedCollection($from, $to, $map, $factory);
 
         return $this;
     }

@@ -41,6 +41,7 @@ class Mapper implements MapperInterface
     public function process($from, &$to, MapInterface $map)
     {
         (new Processor\Links($this->propertyAccess))->process($from, $to, $map);
+        (new Processor\Embeds($this->propertyAccess))->process($from, $to, $map);
         (new Processor\EmbeddedCollections($this->propertyAccess))->process($from, $to, $map);
 
         return $to;
@@ -52,6 +53,8 @@ class Mapper implements MapperInterface
     public function reverse(&$from, $to, MapInterface $map)
     {
         (new Processor\Links($this->propertyAccess))->reverse($from, $to, $map);
+        (new Processor\Embeds($this->propertyAccess))->reverse($from, $to, $map);
+        (new Processor\EmbeddedCollections($this->propertyAccess))->reverse($from, $to, $map);
 
         return $from;
     }

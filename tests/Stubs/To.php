@@ -24,6 +24,16 @@ class To
     private $mappedChildren = '';
 
     /**
+     * Constructor
+     *
+     * @param string $mappedFoo
+     */
+    public function __construct($mappedFoo = null)
+    {
+        $this->setMappedFoo($mappedFoo);
+    }
+
+    /**
      * Get mapped foo
      *
      * @return string

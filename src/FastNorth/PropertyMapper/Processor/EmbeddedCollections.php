@@ -23,7 +23,8 @@ class EmbeddedCollections extends Processor
      */
     public function process($from, &$to, MapInterface $map)
     {
-        $mapper = new Mapper;
+        $mapper = new Mapper($this->propertyAccess);
+
         foreach ($map->getEmbeddedCollections() as $collection) {
             // New value
             $value = [];
@@ -32,7 +33,7 @@ class EmbeddedCollections extends Processor
             $source = $this->propertyAccess->getValue($from, $collection->getFrom());
 
             foreach($source as $item) {
-                $newItem = call_user_func($collection->getGenerator(), $item);
+                $newItem = $collection->getFactory()->factory($item);
                 $value[] = $mapper->process($item, $newItem, $collection->getMap());
             }
 
@@ -53,7 +54,24 @@ class EmbeddedCollections extends Processor
      */
     public function reverse(&$from, $to, MapInterface $map)
     {
-        throw new \LogicException('not implemented');
+        $mapper = new Mapper($this->propertyAccess);
+
+        foreach ($map->getEmbeddedCollections() as $collection) {
+            // New value
+            $value = [];
+
+            // Source items
+            $source = $this->propertyAccess->getValue($to, $collection->getTo());
+
+            foreach($source as $item) {
+                $newItem = $collection->getFactory()->reverse($item);
+                $value[] = $mapper->reverse($newItem, $item, $collection->getMap());
+            }
+
+            $this->propertyAccess->setValue($from, $collection->getFrom(), $value);
+        }
+
+        return $this;
     }
 }
 

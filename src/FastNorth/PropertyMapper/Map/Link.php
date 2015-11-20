@@ -9,22 +9,8 @@ use FastNorth\PropertyMapper\Transformer\TransformerInterface;
  *
  * A single link between to points
  */
-class Link implements LinkInterface
+class Link extends AbstractLink implements LinkInterface
 {
-    /**
-     * The from endpoint
-     *
-     * @var string
-     */
-    private $from;
-
-    /**
-     * The to endpoint
-     *
-     * @var to
-     */
-    private $to;
-
     /**
      * the transformer
      *
@@ -42,60 +28,11 @@ class Link implements LinkInterface
      */
     public function __construct($from, $to, TransformerInterface $transformer = null)
     {
-        $this
-            ->setFrom($from)
-            ->setTo($to);
+        parent::__construct($from, $to);
 
         if ($transformer instanceof TransformerInterface) {
             $this->setTransformer($transformer);
         }
-    }
-
-
-    /**
-     * Get the from endpoint
-     *
-     * @return string
-     */
-    public function getFrom()
-    {
-        return $this->from;
-    }
-
-    /**
-     * Set the from endpoint
-     *
-     * @param  string   $from
-     * @return self
-     */
-    public function setFrom($from)
-    {
-        $this->from = $from;
-
-        return $this;
-    }
-
-    /**
-     * Get the to endpoint
-     *
-     * @return to
-     */
-    public function getTo()
-    {
-        return $this->to;
-    }
-
-    /**
-     * Set the to endpoint
-     *
-     * @param  to   $to
-     * @return self
-     */
-    public function setTo($to)
-    {
-        $this->to = $to;
-
-        return $this;
     }
 
     /**

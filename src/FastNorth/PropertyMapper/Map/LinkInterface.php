@@ -9,22 +9,8 @@ use FastNorth\PropertyMapper\Transfomer\TransformerInterface;
  *
  * Interface describing a single link
  */
-interface LinkInterface
+interface LinkInterface extends LinkedInterface
 {
-    /**
-     * Get the "from" end point
-     *
-     * @return string
-     */
-    public function getFrom();
-
-    /**
-     * Get the "to" endpoint
-     *
-     * @return string
-     */
-    public function getTo();
-
     /**
      * Is there a transformer?
      *

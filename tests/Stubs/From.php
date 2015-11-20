@@ -23,7 +23,7 @@ class From
      */
     private $children = [];
 
-    public function __construct($foo)
+    public function __construct($foo = null)
     {
         $this->foo = $foo;
     }
