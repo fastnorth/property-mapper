@@ -38,9 +38,9 @@ class Callback implements TransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function forward($value, $context)
+    public function transform($value, $context)
     {
-        return call_user_method_array($this->transform, [$value, $context]);
+        return call_user_func($this->transform, $value, $context);
     }
 
     /**
@@ -48,6 +48,6 @@ class Callback implements TransformerInterface
      */
     public function reverse($value, $context)
     {
-        return call_user_method_array($this->reverse, [$value, $context]);
+        return call_user_func($this->reverse, $value, $context);
     }
 }
