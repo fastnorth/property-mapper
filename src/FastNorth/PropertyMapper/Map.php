@@ -38,9 +38,9 @@ class Map implements MapInterface
     /**
      * @inheritDoc
      */
-    public function map($from, $to, TransformerInterface $transformer = null)
+    public function map($from, $to, TransformerInterface $transformer = null, $default = null)
     {
-        $this->links[] = new Link($from, $to, $transformer);
+        $this->links[] = new Link($from, $to, $transformer, $default);
 
         return $this;
     }

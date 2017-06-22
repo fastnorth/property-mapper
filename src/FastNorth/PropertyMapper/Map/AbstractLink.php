@@ -24,16 +24,23 @@ class AbstractLink implements LinkedInterface
     private $to;
 
     /**
+     * @var mixed
+     */
+    private $default;
+
+    /**
      * Constructor
      *
      * @param string $from
      * @param string $to
+     * @param mixed  $default
      */
-    public function __construct($from, $to)
+    public function __construct($from, $to, $default = null)
     {
         $this
             ->setFrom($from)
-            ->setTo($to);
+            ->setTo($to)
+            ->setDefault($default);
     }
 
     /**
@@ -78,6 +85,30 @@ class AbstractLink implements LinkedInterface
     public function setTo($to)
     {
         $this->to = $to;
+
+        return $this;
+    }
+
+    /**
+     * Get the default value if no link was found
+     *
+     * @return mixed
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * Set the default value
+     *
+     * @param    $default
+     *
+     * @return self
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
 
         return $this;
     }

@@ -109,5 +109,60 @@ class MapperTest extends TestCase
 
         $this->assertEquals('value for foo', $to->getMappedFoo());
     }
+
+    /** @test */
+    public function itSetsDefaultProperly()
+    {
+        $map = new Map;
+        $map
+            ->map('[leftA]', '[rightA]')
+            ->map('[leftB]', '[rightB]', null, 'default')
+            ->map('[leftC]', '[rightC]');
+
+        $from = [
+            'leftA' => 'value for a',
+            'leftC' => 'value for c',
+        ];
+
+        $to = [];
+
+        $mapper = new Mapper;
+
+        $mapper->process($from, $to, $map);
+
+
+        $this->assertEquals('value for a', $to['rightA']);
+        $this->assertEquals('default', $to['rightB']);
+        $this->assertEquals('value for c', $to['rightC']);
+    }
+
+    /** @test */
+    public function itSetsDefaultsProperlyOnReverse()
+    {
+        $map = new Map;
+        $map
+            ->map('leftA', 'rightA')
+            ->map('leftB', 'rightB')
+            ->map('leftC', 'rightC', null, 'default');
+
+        $from = (object) [
+            'leftA' => null,
+            'leftB' => null,
+            'leftC' => null,
+        ];
+
+        $to = (object) [
+            'rightA' => 'value for a',
+            'rightB' => 'value for b',
+        ];
+
+        $mapper = new Mapper;
+
+        $mapper->reverse($from, $to, $map);
+
+        $this->assertEquals('value for a', $from->leftA);
+        $this->assertEquals('value for b', $from->leftB);
+        $this->assertEquals('default', $from->leftC);
+    }
 }
 

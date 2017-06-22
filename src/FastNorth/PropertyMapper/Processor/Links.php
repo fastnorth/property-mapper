@@ -23,13 +23,14 @@ class Links extends Processor
     public function process($from, &$to, MapInterface $map)
     {
         foreach ($map->getLinks() as $link) {
-            if ($link->hasTransformer()) {
-                $value = $link->getTransformer()->transform(
-                    $this->propertyAccess->getValue($from, $link->getFrom()),
-                    $from
-                );
-            } else {
+            if ($this->propertyAccess->isReadable($from, $link->getFrom())) {
                 $value = $this->propertyAccess->getValue($from, $link->getFrom());
+            } else {
+                $value = $link->getDefault();
+            }
+
+            if ($link->hasTransformer()) {
+                $value = $link->getTransformer()->transform($value, $from);
             }
 
             $this->propertyAccess->setValue($to, $link->getTo(), $value);
@@ -50,13 +51,14 @@ class Links extends Processor
     public function reverse(&$from, $to, MapInterface $map)
     {
         foreach ($map->getLinks() as $link) {
-            if ($link->hasTransformer()) {
-                $value = $link->getTransformer()->reverse(
-                    $this->propertyAccess->getValue($to, $link->getTo()),
-                    $to
-                );
-            } else {
+            if ($this->propertyAccess->isReadable($to, $link->getTo())) {
                 $value = $this->propertyAccess->getValue($to, $link->getTo());
+            } else {
+                $value = $link->getDefault();
+            }
+
+            if ($link->hasTransformer()) {
+                $value = $link->getTransformer()->reverse($value, $to);
             }
 
             $this->propertyAccess->setValue($from, $link->getFrom(), $value);
