@@ -2,8 +2,8 @@
 
 namespace FastNorth\PropertyMapper\Map;
 
-use FastNorth\PropertyMapper\MapInterface;
 use FastNorth\PropertyMapper\FactoryInterface;
+use FastNorth\PropertyMapper\MapInterface;
 
 /**
  * EmbeddedCollection
@@ -29,9 +29,9 @@ class EmbeddedCollection extends AbstractLink implements EmbeddedCollectionInter
     /**
      * Constructor
      *
-     * @param string $from
-     * @param string $to
-     * @param MapInterface $map
+     * @param string           $from
+     * @param string           $to
+     * @param MapInterface     $map
      * @param FactoryInterface $factory
      */
     public function __construct($from, $to, MapInterface $map, FactoryInterface $factory)
@@ -58,4 +58,3 @@ class EmbeddedCollection extends AbstractLink implements EmbeddedCollectionInter
         return $this->factory;
     }
 }
-

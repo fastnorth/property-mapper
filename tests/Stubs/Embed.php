@@ -39,4 +39,3 @@ class Embed
         return $this;
     }
 }
-

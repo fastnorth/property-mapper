@@ -32,7 +32,7 @@ class EmbeddedCollections extends Processor
             // Source items
             $source = $this->propertyAccess->getValue($from, $collection->getFrom());
 
-            foreach($source as $item) {
+            foreach ($source as $item) {
                 $newItem = $collection->getFactory()->factory($item);
                 $value[] = $mapper->process($item, $newItem, $collection->getMap());
             }
@@ -63,7 +63,7 @@ class EmbeddedCollections extends Processor
             // Source items
             $source = $this->propertyAccess->getValue($to, $collection->getTo());
 
-            foreach($source as $item) {
+            foreach ($source as $item) {
                 $newItem = $collection->getFactory()->reverse($item);
                 $value[] = $mapper->reverse($newItem, $item, $collection->getMap());
             }
@@ -74,4 +74,3 @@ class EmbeddedCollections extends Processor
         return $this;
     }
 }
-

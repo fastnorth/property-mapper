@@ -2,7 +2,7 @@
 
 namespace FastNorth\PropertyMapper\Map;
 
-use FastNorth\PropertyMapper\Transfomer\TransformerInterface;
+use FastNorth\PropertyMapper\Transformer\TransformerInterface;
 
 /**
  * LinkInterface

@@ -67,4 +67,3 @@ class Links extends Processor
         return $this;
     }
 }
-

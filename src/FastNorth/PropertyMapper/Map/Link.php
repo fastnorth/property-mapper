@@ -58,7 +58,8 @@ class Link extends AbstractLink implements LinkInterface
     /**
      * Set the transformer
      *
-     * @param  TransformerInterface   $transformer
+     * @param  TransformerInterface $transformer
+     *
      * @return self
      */
     public function setTransformer(TransformerInterface $transformer)
@@ -68,4 +69,3 @@ class Link extends AbstractLink implements LinkInterface
         return $this;
     }
 }
-

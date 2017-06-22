@@ -2,8 +2,8 @@
 
 namespace FastNorth\PropertyMapper\Transformer\DateTime;
 
-use FastNorth\PropertyMapper\Transformer\TransformerInterface;
 use DateTime;
+use FastNorth\PropertyMapper\Transformer\TransformerInterface;
 
 /**
  * StringToDateTime

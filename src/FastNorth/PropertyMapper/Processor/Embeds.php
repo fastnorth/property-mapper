@@ -23,9 +23,7 @@ class Embeds extends Processor
      */
     public function process($from, &$to, MapInterface $map)
     {
-        $mapper = new Mapper;
         foreach ($map->getEmbeds() as $embed) {
-
             // Create new embedded
             $embedded = $embed->getFactory()->factory($from);
 
@@ -49,7 +47,6 @@ class Embeds extends Processor
      */
     public function reverse(&$from, $to, MapInterface $map)
     {
-        $mapper = new Mapper;
         foreach ($map->getEmbeds() as $embed) {
             // Get embedded value from $to
             $originalEmbedded = $this->propertyAccess->getValue($to, $embed->getTo());
@@ -61,4 +58,3 @@ class Embeds extends Processor
         return $this;
     }
 }
-

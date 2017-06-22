@@ -165,4 +165,3 @@ class MapperTest extends TestCase
         $this->assertEquals('default', $from->leftC);
     }
 }
-

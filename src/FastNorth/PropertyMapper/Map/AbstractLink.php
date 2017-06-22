@@ -19,7 +19,7 @@ class AbstractLink implements LinkedInterface
     /**
      * The to endpoint
      *
-     * @var to
+     * @var string
      */
     private $to;
 
@@ -56,7 +56,8 @@ class AbstractLink implements LinkedInterface
     /**
      * Set the from endpoint
      *
-     * @param  string   $from
+     * @param  string $from
+     *
      * @return self
      */
     public function setFrom($from)
@@ -69,7 +70,7 @@ class AbstractLink implements LinkedInterface
     /**
      * Get the to endpoint
      *
-     * @return to
+     * @return string
      */
     public function getTo()
     {
@@ -79,7 +80,8 @@ class AbstractLink implements LinkedInterface
     /**
      * Set the to endpoint
      *
-     * @param  to   $to
+     * @param string $to
+     *
      * @return self
      */
     public function setTo($to)
@@ -113,4 +115,3 @@ class AbstractLink implements LinkedInterface
         return $this;
     }
 }
-
