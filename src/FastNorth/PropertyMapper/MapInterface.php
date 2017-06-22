@@ -2,9 +2,10 @@
 
 namespace FastNorth\PropertyMapper;
 
-use FastNorth\PropertyMapper\Transformer\TransformerInterface;
+use FastNorth\PropertyMapper\Map\EmbeddedCollectionInterface;
+use FastNorth\PropertyMapper\Map\EmbeddedInterface;
 use FastNorth\PropertyMapper\Map\LinkInterface;
-use FastNorth\PropertyMapper\Map\MappedCollectionInterface;
+use FastNorth\PropertyMapper\Transformer\TransformerInterface;
 
 /**
  * MapInterface.
@@ -64,7 +65,7 @@ interface MapInterface
     /**
      * Get all embedded collections.
      *
-     * @return MappedCollectionInterface[]
+     * @return EmbeddedCollectionInterface[]
      */
     public function getEmbeddedCollections();
 }

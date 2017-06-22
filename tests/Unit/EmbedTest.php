@@ -22,7 +22,7 @@ class EmbedTest extends TestCase
         $to = new Stubs\Embed;
 
         $embedMap = (new Map)->map('[foo]', 'mappedFoo');
-        $map = (new Map)->embed('embedded', $embedMap, new CallbackFactory(function() {
+        $map = (new Map)->embed('embedded', $embedMap, new CallbackFactory(function () {
             return new Stubs\To;
         }));
 
@@ -45,7 +45,7 @@ class EmbedTest extends TestCase
             (new Map)->embed(
                 'embedded',
                 (new Map)->map('[foo]', 'mappedFoo'),
-                new CallbackFactory(function() {
+                new CallbackFactory(function () {
                     return new Stubs\To;
                 })
             )
@@ -54,4 +54,3 @@ class EmbedTest extends TestCase
         $this->assertEquals('value from mapped foo', $from['foo']);
     }
 }
-

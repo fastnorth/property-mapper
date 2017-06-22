@@ -2,8 +2,8 @@
 
 namespace FastNorth\PropertyMapper\Map;
 
-use FastNorth\PropertyMapper\MapInterface;
 use FastNorth\PropertyMapper\FactoryInterface;
+use FastNorth\PropertyMapper\MapInterface;
 
 /**
  * EmbeddedInterface

@@ -22,4 +22,11 @@ interface LinkedInterface
      * @return string
      */
     public function getTo();
+
+    /**
+     * Get the default value if no link was found
+     *
+     * @return mixed
+     */
+    public function getDefault();
 }

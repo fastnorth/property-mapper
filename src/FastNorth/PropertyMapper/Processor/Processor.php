@@ -28,4 +28,3 @@ abstract class Processor
         $this->propertyAccess = $propertyAccess;
     }
 }
-

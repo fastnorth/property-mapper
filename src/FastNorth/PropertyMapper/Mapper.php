@@ -2,9 +2,8 @@
 
 namespace FastNorth\PropertyMapper;
 
-use FastNorth\PropertyMapper\Mapper;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
-use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**
  * Mapper.
@@ -30,7 +29,10 @@ class Mapper implements MapperInterface
     public function __construct(PropertyAccessorInterface $propertyAccess = null)
     {
         if (!($propertyAccess instanceof PropertyAccessorInterface)) {
-            $propertyAccess = new PropertyAccessor();
+            $propertyAccess = PropertyAccess::createPropertyAccessorBuilder()
+                                            ->enableExceptionOnInvalidIndex()
+                                            ->disableMagicCall()
+                                            ->getPropertyAccessor();
         }
         $this->propertyAccess = $propertyAccess;
     }

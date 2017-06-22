@@ -33,10 +33,10 @@ class EmbeddedCollectionsTest extends TestCase
                 'mappedChildren',
                 (new Map)->map('foo', 'mappedFoo'),
                 new CallbackFactory(
-                    function($value) {
+                    function ($value) {
                         return new Stubs\To;
                     },
-                    function($value) {
+                    function ($value) {
                         return [];
                     }
                 )
@@ -48,7 +48,7 @@ class EmbeddedCollectionsTest extends TestCase
 
         $this->assertCount(3, $to->getMappedChildren());
         $count = 0;
-        foreach($to->getMappedChildren() as $child) {
+        foreach ($to->getMappedChildren() as $child) {
             $this->assertInstanceOf(Stubs\To::class, $child);
             $this->assertEquals(sprintf('foo child %d', $count++), $child->getMappedFoo());
         }
@@ -72,10 +72,10 @@ class EmbeddedCollectionsTest extends TestCase
                 'mappedChildren',
                 (new Map)->map('[foo]', 'foo'), // Maps from array to property
                 new CallbackFactory(
-                    function($value) {
+                    function ($value) {
                         return new Stubs\To;
                     },
-                    function($value) {
+                    function ($value) {
                         return [];
                     }
                 )
@@ -89,7 +89,7 @@ class EmbeddedCollectionsTest extends TestCase
 
         $this->assertCount(3, $from->getChildren());
         $count = 0;
-        foreach($from->getChildren() as $child) {
+        foreach ($from->getChildren() as $child) {
             $this->assertTrue(is_array($child));
             $this->assertEquals(sprintf('foo child %d', $count++), $child['foo']);
         }

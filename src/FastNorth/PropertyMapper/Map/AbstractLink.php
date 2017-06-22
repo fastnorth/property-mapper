@@ -19,21 +19,28 @@ class AbstractLink implements LinkedInterface
     /**
      * The to endpoint
      *
-     * @var to
+     * @var string
      */
     private $to;
+
+    /**
+     * @var mixed
+     */
+    private $default;
 
     /**
      * Constructor
      *
      * @param string $from
      * @param string $to
+     * @param mixed  $default
      */
-    public function __construct($from, $to)
+    public function __construct($from, $to, $default = null)
     {
         $this
             ->setFrom($from)
-            ->setTo($to);
+            ->setTo($to)
+            ->setDefault($default);
     }
 
     /**
@@ -49,7 +56,8 @@ class AbstractLink implements LinkedInterface
     /**
      * Set the from endpoint
      *
-     * @param  string   $from
+     * @param  string $from
+     *
      * @return self
      */
     public function setFrom($from)
@@ -62,7 +70,7 @@ class AbstractLink implements LinkedInterface
     /**
      * Get the to endpoint
      *
-     * @return to
+     * @return string
      */
     public function getTo()
     {
@@ -72,7 +80,8 @@ class AbstractLink implements LinkedInterface
     /**
      * Set the to endpoint
      *
-     * @param  to   $to
+     * @param string $to
+     *
      * @return self
      */
     public function setTo($to)
@@ -81,5 +90,28 @@ class AbstractLink implements LinkedInterface
 
         return $this;
     }
-}
 
+    /**
+     * Get the default value if no link was found
+     *
+     * @return mixed
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * Set the default value
+     *
+     * @param    $default
+     *
+     * @return self
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
+
+        return $this;
+    }
+}

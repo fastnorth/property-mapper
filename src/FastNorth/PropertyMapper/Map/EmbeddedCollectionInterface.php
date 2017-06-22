@@ -2,8 +2,8 @@
 
 namespace FastNorth\PropertyMapper\Map;
 
-use FastNorth\PropertyMapper\MapInterface;
 use FastNorth\PropertyMapper\FactoryInterface;
+use FastNorth\PropertyMapper\MapInterface;
 
 /**
  * EmbeddedCollectionInterface
@@ -14,6 +14,8 @@ interface EmbeddedCollectionInterface extends LinkedInterface
 {
     /**
      * Get the map for the collection
+     *
+     * @return MapInterface
      */
     public function getMap();
 

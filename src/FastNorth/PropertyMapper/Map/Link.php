@@ -21,14 +21,14 @@ class Link extends AbstractLink implements LinkInterface
     /**
      * Constructor
      *
-     * @param string $from
-     * @param string $to
-     *
+     * @param string               $from
+     * @param string               $to
      * @param TransformerInterface $transformer optional transformer
+     * @param mixed                $default
      */
-    public function __construct($from, $to, TransformerInterface $transformer = null)
+    public function __construct($from, $to, TransformerInterface $transformer = null, $default = null)
     {
-        parent::__construct($from, $to);
+        parent::__construct($from, $to, $default);
 
         if ($transformer instanceof TransformerInterface) {
             $this->setTransformer($transformer);
@@ -58,7 +58,8 @@ class Link extends AbstractLink implements LinkInterface
     /**
      * Set the transformer
      *
-     * @param  TransformerInterface   $transformer
+     * @param  TransformerInterface $transformer
+     *
      * @return self
      */
     public function setTransformer(TransformerInterface $transformer)
@@ -68,4 +69,3 @@ class Link extends AbstractLink implements LinkInterface
         return $this;
     }
 }
-
