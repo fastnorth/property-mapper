@@ -1,5 +1,6 @@
 {
     "name": "fastnorth/property-mapper-new",
+    "type": "library",
     "description": "Transforms data structures",
     "autoload": {
         "psr-4": {
